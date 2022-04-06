@@ -1,0 +1,72 @@
+<div class="cloudapp-actions">
+  <button mat-flat-button type="button" color="secondary" [routerLink]="['/']">{{ 'BACK' | translate }}</button>
+  <button mat-flat-button type="button" color="secondary" (click)="reset()">{{ 'CLEAR' | translate }}</button>
+  <button mat-flat-button type="button" color="primary" (click)="process()">{{ 'REVIEW.PROCESS' | translate }}</button>
+</div>
+<table mat-table [dataSource]="dataSource">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Title Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef translate>REVIEW.TITLE</th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <!-- Author Column -->
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef translate>REVIEW.AUTHOR</th>
+    <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+  </ng-container>
+
+  <!-- Identifiers Column -->
+  <ng-container matColumnDef="identifiers">
+    <th mat-header-cell *matHeaderCellDef translate>REVIEW.IDENTIFIERS</th>
+    <td mat-cell *matCellDef="let element"> {{displayIdentifiers(element.identifiers)}} </td>
+  </ng-container>
+
+  <!-- Match Coluimn -->
+  <ng-container matColumnDef="match">
+    <th mat-header-cell *matHeaderCellDef translate>REVIEW.MATCH</th>
+    <td mat-cell *matCellDef="let element"> {{element.matchResults.join(', ')}} </td>
+  </ng-container>
+
+  <!-- Actions -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef translate></th>
+    <td mat-cell *matCellDef="let element"> <mat-icon (click)="view(element)">visibility</mat-icon> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]"
+  showFirstLastButtons>
+</mat-paginator>
+
+<div class="loading-shade" *ngIf="loading">
+  <mat-progress-spinner 
+    [mode]="percentComplete > 0 ? 'determinate' : 'indeterminate'"
+    diameter="50"
+    [value]="percentComplete"
+  ></mat-progress-spinner>
+</div>

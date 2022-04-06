@@ -1,0 +1,11 @@
+.icon-with-border .mat-icon {
+  border: solid green 1px;
+  transform: scale(2);
+  margin: 10px 10px 20px 15px;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.mat-icon.green {
+  color: green;
+}

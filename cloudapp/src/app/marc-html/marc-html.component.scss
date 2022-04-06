@@ -1,0 +1,18 @@
+@mixin marc-html-theme($theme, $typgraphy) {
+  .marc-html {
+    table {
+      border: solid 1px;
+      border-color: mat-color(map-get($theme, primary));
+      border-collapse: collapse;
+    }
+    tr:nth-child(even) {
+      background-color: mat-color(map-get($theme, primary), lighter);;
+    }
+    td, tr {
+      padding: 3px;
+    }
+    td:nth-child(1), td:nth-child(2) {
+      width: 30px;
+    }
+  }
+}

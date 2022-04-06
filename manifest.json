@@ -1,0 +1,15 @@
+{
+   "id": "selection-analyzer",
+   "title": "Selection Analyzer",
+   "subtitle": "Analyzes input files, finds matches in Alma, creates BIBs, inventory, and PO lines",
+   "author": "Ex Libris",
+   "description": "",
+   "icon": {
+      "type": "url",
+      "value": "/assets/selection-icon.png"
+   },
+   "fullscreen": {
+      "allow": true,
+      "open": true
+   }
+}

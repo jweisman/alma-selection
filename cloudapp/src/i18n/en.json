@@ -1,0 +1,16 @@
+{
+	"BACK": "Back",
+	"CLEAR": "Clear",
+	"MAIN": {
+		"DRAG": "Drag a file or click to browse",
+		"NEXT": "Next",
+		"SESSION_EXISTS": "A previous selection session has been restored."
+	},
+	"REVIEW": {
+		"AUTHOR": "Author",
+		"IDENTIFIERS": "Identifiers",
+		"MATCH": "Match",
+		"PROCESS": "Process",
+		"TITLE": "Title"
+	}
+}

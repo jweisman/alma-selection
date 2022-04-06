@@ -1,0 +1,16 @@
+<div class="cloudapp-actions">
+  <button mat-flat-button type="button" color="secondary" (click)="reset()">{{ 'CLEAR' | translate }}</button>
+  <button mat-flat-button type="button" color="primary" (click)="process()" [disabled]="files.length==0 && !existingSession">{{ 'MAIN.NEXT' | translate }}</button>
+</div>
+<div *ngIf="existingSession">
+  <div class="icon-with-border">
+    <mat-icon class="green">save</mat-icon>
+  </div>
+  <p translate>MAIN.SESSION_EXISTS</p>
+</div>
+<ngx-dropzone (change)="onSelect($event)" accept=".xml" [expandable]="true" *ngIf="!existingSession">
+  <ngx-dropzone-label translate>MAIN.DRAG</ngx-dropzone-label>
+  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+  </ngx-dropzone-preview>
+</ngx-dropzone>
